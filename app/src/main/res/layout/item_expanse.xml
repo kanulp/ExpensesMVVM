@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
+        <variable
+            name="expense"
+            type="com.kanulp.expensemvvm.data.models.ExpanseModelElement"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:elevation="8dp"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="5dp"
+        android:layout_height="wrap_content">
+
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        >
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_account"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="@{expense.expenseTitle}"
+        android:textColor="#040404"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:typeface="sans"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp" />
+
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/title"
+        android:gravity="right"
+        app:bindTimeStampDate="@{expense.date}"
+        android:layout_marginRight="5dp"
+        android:textSize="14sp"
+        android:textColor="#272626"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:text='@{"$"+String.valueOf(expense.amount)}'
+        android:layout_marginRight="5dip"
+        android:layout_below="@id/date"
+        android:textSize="18sp"
+        android:textColor="#040404"
+        android:textStyle="bold"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="#2E2C2C"
+        android:layout_below="@+id/thumbnail"
+        android:layout_margin="5dp"
+        android:id="@+id/line"
+        />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_below="@id/line"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center"
+        android:background="@drawable/rounded_text_corner"
+        android:layout_margin="5dp"
+        android:text="@{expense.category}"
+         />
+
+    <TextView
+        android:id="@+id/currency"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:layout_below="@id/line"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_toLeftOf="@id/img"
+        android:textColor="@android:color/holo_blue_light"
+        android:background="@drawable/rounded_text_corner"
+        android:text="@{expense.currencyCode}"
+        android:layout_margin="5dp"
+        android:layout_toStartOf="@id/img" />
+
+    <ImageView android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/line"
+        android:id="@+id/img"
+        android:scaleType="fitXY"
+        app:imageFromUrl="@{expense.attachments.get(0).image}"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
+</androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kanulp.expensemvvm.viewmodels.DetailViewModel" />
+    </data>
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="15dp"
+    >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:hint="Merchant"
+            android:id="@+id/tv_merchant"
+            android:background="#FFF"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:background="#FFF"
+            android:focusable="false"
+            android:clickable="false"
+            android:textColor="#000"
+            android:textSize="25sp"
+            app:bindDrawableRight="@{viewModel.expense.attachments.get(0).image}"
+            android:text="@{viewModel.expense.expenseTitle}"
+            android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:hint="Total"
+            android:id="@+id/tv_amount"
+            android:layout_below="@+id/tv_merchant"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="#FFF"
+                android:textSize="25sp"
+                android:textColor="#000"
+                android:text='@{"$"+String.valueOf(viewModel.expense.amount)}'
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/linear"
+            android:layout_below="@id/tv_amount"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:hint="Date"
+            android:id="@+id/tv_date"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="#FFF"
+                android:textSize="18sp"
+                android:textColor="#000"
+                app:bindTimeStampDate="@{viewModel.expense.date}"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_marginLeft="20dp"
+            android:hint="Category"
+            android:id="@+id/tv_category"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:focusable="false"
+                android:clickable="false"
+                android:textColor="#000"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:background="#FFF"
+                android:textSize="18sp"
+                android:text="@{viewModel.expense.category}"                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_arrow_forward" />
+        </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="110dp"
+            android:hint="Description (optional)"
+            android:padding="5dp"
+            android:layout_below="@id/linear"
+            android:textSize="18sp"
+            android:inputType="text|textMultiLine"
+            android:background="@drawable/rounded_edit_text_corner"
+        />
+
+    </RelativeLayout>
+</layout>
